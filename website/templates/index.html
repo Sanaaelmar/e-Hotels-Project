@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <title>Hotel Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../static/style.css">
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <header class="header" id="navigation-menu">
+    <div class="container">
+      <nav>
+        <p class="logo" >eHotels</p>
+
+        <ul class="nav-menu">
+          <li> <a href="#home" class="nav-link">Home</a> </li>
+          <li> <a href="#about" class="nav-link">About</a> </li>
+          <li> <a href="#room" class="nav-link">Rooms</a> </li>
+          <li> <a href="#restaurant" class="nav-link">Restaurant</a> </li>
+          <li> <a href="#gallery" class="nav-link">Gallery</a> </li>
+          <li> <a href="#contact" class="nav-link">Contact</a> </li>
+          <li> <a href="/signin" class="nav-link">Login</a> </li>
+          <li> <a href="/signup" class="nav-link">Sign Up</a> </li>
+        </ul>
+
+        <div class="hambuger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <script>
+    const hambuger = document.querySelector('.hambuger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hambuger.addEventListener("click", mobileMenu);
+
+    function mobileMenu() {
+      hambuger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    }
+
+    const navLink = document.querySelectorAll('.nav-link');
+    navLink.forEach((n) => n.addEventListener("click", closeMenu));
+
+    function closeMenu() {
+      hambuger.classList.remove("active");
+      navMenu.classList.remove("active");
+    }
+  </script>
+
+  <section class="home" id="home">
+    <div class="head_container">
+      <div class="box">
+        <div class="text">
+          <h1>Welcome.</h1>
+          <p>We are a metasearch engine that compares lodging prices and offers provided by various online booking sites. </p>
+          <button>MORE INFO</button>
+        </div>
+      </div>
+      <div class="image">
+        <img src={{ url_for('static', filename='image/home1.jpg') }} class="slide">
+      </div>
+      <div class="image_item">
+        <img src={{ url_for('static', filename='image/home1.jpg') }} alt="" class="slide active" onclick="img('{{ url_for('static', filename='image/home1.jpg') }}')">
+        <img src={{ url_for('static', filename='image/home2.jpg') }} alt="" class="slide" onclick="img('{{ url_for('static', filename='image/home2.jpg') }}')">
+        <img src={{ url_for('static', filename='image/home3.jpg') }} alt="" class="slide" onclick="img('{{ url_for('static', filename='image/home3.jpg') }}')">
+        <img src={{ url_for('static', filename='image/home4.jpg') }} alt="" class="slide" onclick="img('{{ url_for('static', filename='image/home4.jpg') }}')">
+      </div>
+    </div>
+  </section>
+  <script>
+    function img(anything) {
+      document.querySelector('.slide').src = anything;
+    }
+
+    function change(change) {
+      const line = document.querySelector('.image');
+      line.style.background = change;
+    }
+  </script>
+  <section class="book">
+    <div class="container flex">
+      
+      <div class="input grid">
+        <div class="box">
+          <label>Check-in:</label>
+          <input type="date" placeholder="Check-in-Date">
+        </div>
+        <div class="box">
+          <label>Check-out:</label>
+          <input type="date" placeholder="Check-out-Date">
+        </div>
+        
+        <div class="box">
+          <label for ="hotel_chain">Hotel Chain:</label> <br>
+          <select id = "hotel_chain" name="hotel_chain">
+            <option value = "">Select Chain</option>
+            <option value = "Accora">Accora</option>
+            <option value = "Four Season">Four Seasons</option>
+            <option value = "Ritz-Carlton">Ritz-Carlton</option>
+            <option value = "Marriott">Marriott</option>
+            <option value = "Hyatt">Hyatt Hotels</option>
+          </select>
+        </div>
+
+        <div class="box">
+          <label for="city">Choose a city:</label>
+          <select id="city" name="city">
+              <option value="">Select a city</option>
+              <option value="Quebec City">Quebec City</option>
+              <option value="Montreal">Montreal</option>
+              <option value="Ottawa">Ottawa</option>
+              <option value="Toronto">Toronto</option>
+              <option value="Vancouver">Vancouver</option>
+              <option value="Victoria">Victoria</option>
+              <option value="New York City">New York City</option>
+              <option value="Buffalo">Buffalo</option>
+              <option value="Los Angeles">Los Angeles</option>
+              <option value="San Francisco">San Francisco</option>
+              <option value="San Diego">San Diego</option>
+              <option value="Miami">Miami</option>
+              <option value="Orlando">Orlando</option>
+              <option value="Boston">Boston</option>
+          </select>
+        </div>
+       
+      </div>
+      <div class="search">
+        <button type="submit">SEARCH</button>
+      </div>
+    </div>
+
+  </section>
+  <section class="about top" id="about">
+    <div class="container flex">
+      <div class="left">
+        <div class="img">
+          <img src={{ url_for('static', filename='image/a1.jpg') }} alt="" class="image1">
+          <img src={{ url_for('static', filename='image/a2.jpg') }} alt="" class="image2">
+        </div>
+      </div>
+      <div class="right">
+        <div class="heading">
+          <h5>RAISING COMFORT TO THE HIGHEST LEVEL</h5>
+          <h2>Welcome to eHotels</h2>
+          <p>The text you've provided is already in French, but if you're looking for its English translation, here it is:
+
+            "Welcome to OVO Hotels, where every stay turns into an unforgettable experience. Nestled in the heart of Ottawa, our hotel combines local charm and modern comfort to ensure our guests a perfect escape from the daily routine." </p>
+          <button class="btn1">READ MORE</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="wrapper top">
+    <div class="container">
+      <div class="text">
+        <h2>Our Amenities</h2>
+        <p>OVO Hotels offers a luxurious stay with elegant rooms, gourmet dining, spa services, exclusive experiences, and round-the-clock convenience, ensuring a memorable and comfortable experience. </p>
+
+        <div class="content">
+          <div class="box flex">
+            <i class="fas fa-swimming-pool"></i>
+            <span>Swimming pool</span>
+          </div>
+          <div class="box flex">
+            <i class="fas fa-dumbbell"></i>
+            <span>Gym & yoga</span>
+          </div>
+          <div class="box flex">
+            <i class="fas fa-spa"></i>
+            <span>Spa & massage</span>
+          </div>
+          <div class="box flex">
+            <i class="fas fa-ship"></i>
+            <span>Boat Tours</span>
+          </div>
+          <div class="box flex">
+            <i class="fas fa-swimmer"></i>
+            <span>Surfing Lessons</span>
+          </div>
+          <div class="box flex">
+            <i class="fas fa-microphone"></i>
+            <span>Conference room</span>
+          </div>
+          <div class="box flex">
+            <i class="fas fa-water"></i>
+            <span>Diving </span>
+          </div>
+          <div class="box flex">
+            <i class="fas fa-umbrella-beach"></i>
+            <span>Private Beach</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="room top" id="room">
+    <div class="container">
+      <div class="heading_top flex1">
+        <div class="heading">
+          <h5>RAISING COMFORT TO THE HIGHEST LEVEL</h5>
+          <h2>Rooms $ Suites</h2>
+       
+
+      <div class="content grid">
+        <div class="box">
+          <div class="img">
+            <img src={{ url_for('static', filename='image/r1.jpg') }} alt="">
+          </div>
+          <div class="text">
+            <h3>Superior Soble Rooms</h3>
+            <p> <span>$</span>100 <span>/per night</span> </p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="img">
+            <img src={{ url_for('static', filename='image/r2.jpg') }} alt="">
+          </div>
+          <div class="text">
+            <h3>Superior Soble Rooms</h3>
+            <p> <span>$</span>200 <span>/per night</span> </p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="img">
+            <img src={{ url_for('static', filename='image/r3.jpg') }} alt="">
+          </div>
+          <div class="text">
+            <h3>Superior Soble Rooms</h3>
+            <p> <span>$</span>300 <span>/per night</span> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="wrapper wrapper2 top">
+    <div class="container">
+      <div class="text">
+        <div class="heading">
+          <h5>AT THE HEART OF COMMUNICATION</h5>
+          <h2>People Say</h2>
+        </div>
+
+        <div class="para">
+          <p>"Staying at OVO Hotels was an unparalleled experience. From the luxurious rooms to the exquisite dining and top-notch service, every moment felt truly special. It's not just a stay; it's an experience that lingers long after you've checked out. Can't wait to return!"</p>
+
+          <div class="box flex">
+            <div class="img">
+              <img src={{ url_for('static', filename='image/drake.jpg') }} alt="">
+            </div>
+            <div class="name">
+              <h5>Aubrey Graham Drake</h5>
+              <h5>Toronto , Ontario</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="restaurant top" id="restaurant">
+    <div class="container flex">
+      <div class="left">
+        <img src={{ url_for('static', filename='image/re.jpg') }} alt="">
+      </div>
+      <div class="right">
+        <div class="text">
+          <h2>Our Different Restaurants</h2>
+          <p> </p>
+        </div>
+        <div class="accordionWrapper">
+          <div class="accordionItem open">
+            <h2 class="accordionIHeading">Italian Kitchen</h2>
+            <div class="accordionItemContent">
+              <p>Italian cuisine emphasizes fresh, quality ingredients, with regional dishes from creamy risottos in the north to vibrant tomato-based recipes in the south. Staples include pasta, olive oil, cheeses, and cured meats, highlighting Italy's rich culinary heritage and love for flavorful, simple meals.
+              </p>
+            </div>
+          </div>
+          <div class="accordionItem close">
+            <h2 class="accordionIHeading">Mexican Kitchen</h2>
+            <div class="accordionItemContent">
+              <p>Mexican cuisine is vibrant and diverse, known for its bold flavors and colorful presentations. Staples include corn, beans, chili peppers, and tomatoes, creating dishes like tacos, enchiladas, and mole. It's a rich blend of indigenous and Spanish influences, celebrated for its variety of spices and fresh ingredients.
+              </p>
+            </div>
+          </div>
+          <div class="accordionItem close">
+            <h2 class="accordionIHeading">Moroccan Kitchen</h2>
+            <div class="accordionItemContent">
+              <p>Moroccan cuisine is rich and aromatic, known for its use of spices like cumin, coriander, and saffron. Staples include couscous, bread, and tagines, with a focus on lamb, chicken, and a wide variety of vegetables. It's a blend of Berber, Arab, and Mediterranean influences, famous for its sweet and savory combinations.
+              </p>
+            </div>
+          </div>
+          <div class="accordionItem close">
+            <h2 class="accordionIHeading">French Kitchen</h2>
+            <div class="accordionItemContent">
+              <p>French cuisine is renowned for its finesse and flavor, emphasizing butter, herbs, and quality ingredients. It ranges from sophisticated dishes like coq au vin and bouillabaisse to simple, rustic fare like baguettes and cheese. French cooking is regional, from the hearty meals of the countryside to the refined pastries of Paris, showcasing a deep appreciation for culinary art and tradition.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    var accItem = document.getElementsByClassName('accordionItem');
+    var accHD = document.getElementsByClassName('accordionIHeading');
+
+    for (i = 0; i < accHD.length; i++) {
+      accHD[i].addEventListener('click', toggleItem, false);
+    }
+
+    function toggleItem() {
+      var itemClass = this.parentNode.className;
+      for (var i = 0; i < accItem.length; i++) {
+        accItem[i].className = 'accordionItem close';
+      }
+      if (itemClass == 'accordionItem close') {
+        this.parentNode.className = 'accordionItem open';
+      }
+    }
+  </script>
+
+
+
+  <section class="gallary mtop " id="gallery">
+    <div class="container">
+      <div class="heading_top flex1">
+        <div class="heading">
+          <h5>WELCOME TO OUR PHOTO GALLERY</h5>
+          <h2>Photo Gallery of Our Different Hotels</h2>
+        </div>
+      </div>
+
+      <div class="owl-carousel owl-theme">
+        <div class="item">
+          <img src={{ url_for('static', filename='image/g1.jpg') }} alt="">
+        </div>
+        <div class="item">
+          <img src={{ url_for('static', filename='image/g2.jpg') }} alt="">
+        </div>
+        <div class="item">
+          <img src={{ url_for('static', filename='image/g3.jpg') }} alt="">
+        </div>
+        <div class="item">
+          <img src={{ url_for('static', filename='image/g4.jpg') }} alt="">
+        </div>
+        <div class="item">
+          <img src={{ url_for('static', filename='image/g5.jpg') }} alt="">
+        </div>
+        <div class="item">
+          <img src={{ url_for('static', filename='image/g6.jpg') }} alt="">
+        </div>
+        <div class="item">
+          <img src={{ url_for('static', filename='image/g7.jpg') }} alt="">
+        </div>
+        <div class="item">
+          <img src={{ url_for('static', filename='image/g8.jpg') }} alt="">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js" integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA==" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script>
+    $('.owl-carousel').owlCarousel({
+      loop: true,
+      margin: 10,
+      nav: true,
+      dots: false,
+      navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
+      responsive: {
+        0: {
+          items: 1
+        },
+        768: {
+          items: 2
+        },
+        1000: {
+          items: 4
+        }
+      }
+    })
+  </script>
+  
+  <footer>
+    <div class="container grid top" id ="contact">
+      <div class="box">
+        <img src="https://img.icons8.com/external-flatart-icons-flat-flatarticons/48/000000/external-hotel-hotel-services-and-city-elements-flatart-icons-flat-flatarticons-1.png" />
+        <p></p>
+
+        <p>Accepted payment methods</p>
+        <div class="payment grid">
+          <img src="https://img.icons8.com/color/48/000000/visa.png" />
+          <img src="https://img.icons8.com/color/48/000000/mastercard.png" />
+          <img src="https://img.icons8.com/color-glass/48/000000/paypal.png" />
+          <img src="https://img.icons8.com/fluency/48/000000/amex.png" />
+        </div>
+      </div>
+
+      <div class="box">
+        <h3>Recent News</h3>
+
+        <ul>
+          <li>Our Secret Island Boat Tour Is Just for You</li>
+          <li>Chill and Escape in Our Natural Shelters</li>
+          <li>June in Puerto Vallarta</li>
+          <li>Live Music Concerts at Chicago</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>For Customers</h3>
+        <ul>
+          <li>About eHotels</li>
+          <li>Customer Care/Help</li>
+          <li>Corporate Accounts</li>
+          <li>Financial Information</li>
+          <li>Terms & Conditions</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>Contact Us</h3>
+
+        <ul>
+          <li>90 University Private, Ottawa, ON K1N 6N5</li>
+          <li><i class="far fa-envelope"></i>ehotels@gmail.com </li>
+          <li><i class="far fa-phone-alt"></i>613 478 8792 </li>
+          <li><i class="far fa-phone-alt"></i>613 520 0247 </li>
+          <li><i class="far fa-comments"></i>24/ 7 Customer Services </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

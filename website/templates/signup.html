@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Client Login Page</title>
+<link rel="stylesheet" href="../static/Client_signin_page.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+<script type="text/javascript">
+	function validate (){
+		var username = document.getElementById("username");
+		var password = document.getElementById("password");
+		if (username == "" || password == ""){
+			alert ("Username or password cannot be null");
+			return false;
+		}else{
+			return true;
+		}
+	}
+</script>
+</head>
+<body>
+	<header class="header2" id="navigation-menu">
+        <div class="container">
+          <nav>
+            <p class="logo1" >eHotels</p>
+    
+            <ul class="nav-menu1">
+              <li> <a href="/" class="nav-link">Home</a> </li>
+              <li> <a href="/signin" class="nav-link">Login</a> </li>
+            </ul>
+    
+            <div class="hambuger">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+          </nav>
+        </div>
+    </header>
+	{% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %} {% if category =='error' %}
+		<div class="alert alert-danger alter-dismissable fade show" role="alert">
+		  {{ message }}
+		  <button type="button" class="close" data-dismiss="alert">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		{% else %}
+		<div class="alert alert-success alter-dismissable fade show" role="alert">
+		  {{ message }}
+		  <button type="button" class="close" data-dismiss="alert">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		{% endif %} {% endfor %} {% endif %} {% endwith %}
+	
+	<div class = "center">
+	<h1>Sign Up</h1>
+	<form method="post">
+		
+		<div class = "txt_field">
+			<input id="nom" name ="nom" type="text" required>
+			<span></span>
+			<label>Nom</label>	
+		</div>
+		<div class = "txt_field">
+			<input id="NAS" name ="NAS" type="text" required>
+			<span></span>
+			<label>Numero d'assurance sociale</label>	
+		</div>
+		<div class = "txt_field">
+			<input id="addresse" name ="addresse" type="text" required>
+			<span></span>
+			<label>Addresse</label>	
+		</div>
+		<div class = "txt_field">
+			<input id="card_number" name ="card_number" type="text" required>
+			<span></span>
+			<label>Credit Card Number</label>	
+		</div>
+		<div class = "txt_field">
+			<input id="username" name ="username" type="text" required>
+			<span></span>
+			<label>Email</label>	
+		</div>
+		<div class = "txt_field">
+			<input id="password" name ="password" type="password" required>
+			<span></span>
+			<label>Password</label>	
+		</div>
+		<div class = "txt_field">
+			<input id="password2" name ="password2" type="password" required>
+			<span></span>
+			<label>Confirm Password</label>	
+		</div>
+		<!-- <input class = "button_login" type="submit" value="Login" > -->
+		<button class = "button_login" type="submit">Sign Up</button>
+		<!-- <div class ="signup_link">
+			<button class = "button_register" onclick="location.href='Client_enregistrement_page.html'">Register</button>
+		</div> -->
+	</form>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+	
+</body>
+</html>

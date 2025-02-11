@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <title>Hotel Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../static/style1.css">
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+</head>
+<body >
+    <header class="header1" id="navigation-menu">
+        <div class="container">
+          <nav>
+            <p class="logo1" >eHotels</p>
+    
+            <ul class="nav-menu1">
+              <li> <a href="/" class="nav-link">log out</a> </li>
+              
+              <li> <a href="#contact" class="nav-link">Contact</a> </li>
+            </ul>
+    
+            <div class="hambuger">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+          </nav>
+        </div>
+      </header>
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %} {% if category =='error' %}
+        <div class="alert alert-danger alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% else %}
+        <div class="alert alert-success alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endif %} {% endfor %} {% endif %} {% endwith %}
+    <section class="Res">
+        <h1>Personnal information</h1>
+        <nav>
+            <ul>
+                <li> Full Name : {{employe[0][0] }} </a></li> 
+                <li>Email : {{employe[0][1] }}</li>
+                <li>Role : {{employe[0][2] }}</li>
+            </ul>
+          
+        </nav>
+        </section>
+        
+        {% for i in range(len) %}
+        <section class="Res">
+            <h1>Reservation #{{reservations[i][0]}}</h1>
+            <nav>
+                <ul>
+                  
+                  <li> <a href="index.html">Room {{ reservations[i][2] }}</a></li> 
+                  <li><a href="index.html">Prix {{ reservations[i][4] }}</a></li>
+                  <li><a href="index.html">Capacite {{ reservations[i][5] }}</a></li>
+                  <li><a href="index.html">On {{ reservations[i][6] }} for {{ reservations[i][7] }} days</a></li>
+                </ul>
+                <form method="post">
+                  <input type="hidden" name="reservationID" value="{{ reservations[i][0] }}">
+                  <button type="submit">Confirm</button>
+              </form>
+              
+            </nav>
+        </section>
+        {% endfor %}
+
+
+
+<footer>
+    <div class="container grid top" id ="contact">
+      <div class="box">
+        <img src="https://img.icons8.com/external-flatart-icons-flat-flatarticons/48/000000/external-hotel-hotel-services-and-city-elements-flatart-icons-flat-flatarticons-1.png" />
+        <p></p>
+
+        <p>Accepted payment methods</p>
+        <div class="payment grid">
+          <img src="https://img.icons8.com/color/48/000000/visa.png" />
+          <img src="https://img.icons8.com/color/48/000000/mastercard.png" />
+          <img src="https://img.icons8.com/color-glass/48/000000/paypal.png" />
+          <img src="https://img.icons8.com/fluency/48/000000/amex.png" />
+        </div>
+      </div>
+
+      <div class="box">
+        <h3>Recent News</h3>
+
+        <ul>
+          <li>Our Secret Island Boat Tour Is Just for You</li>
+          <li>Chill and Escape in Our Natural Shelters</li>
+          <li>June in Puerto Vallarta</li>
+          <li>Live Music Concerts at Chicago</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>For Customers</h3>
+        <ul>
+          <li>About eHotels</li>
+          <li>Customer Care/Help</li>
+          <li>Corporate Accounts</li>
+          <li>Financial Information</li>
+          <li>Terms & Conditions</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>Contact Us</h3>
+
+        <ul>
+          <li>90 University Private, Ottawa, ON K1N 6N5</li>
+          <li><i class="far fa-envelope"></i> ehotels@gmail.com </li>
+          <li><i class="far fa-phone-alt"></i> 613 478 8792 </li>
+          <li><i class="far fa-phone-alt"></i> 613 520 0247 </li>
+          <li><i class="far fa-comments"></i> 24/ 7 Customer Services </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+
+</body>

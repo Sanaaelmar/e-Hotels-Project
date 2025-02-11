@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script defer src="./scripts/bonus_projet_integrateur.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/css.css" />
+    <title>OVO Hotels</title>
+    <style>
+        /* Add or enhance existing CSS here */
+        body {
+            /* Your existing body styles */
+        }
+        .dark-theme {
+            background-color: #333;
+            color: white;
+        }
+        /* Styles for the booking section */
+        #booking form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+        }
+        #booking label, #booking input, #booking select, #booking button {
+            margin: 5px 0;
+            line-height: 2em;
+        }
+    </style>
+</head>
+<body id="rouge_body">
+
+<div id="rouge_nav" class="topbanner">
+    <img class="equipe" src="./image/OVO-Logo.jpg" alt="logo d'équipe">
+    <nav>
+        <ul>
+            <li><a href="anthony.html">OVO Hotels</a></li>
+            <li><a href="anthony.html">Our Hotels</a></li>
+            <li><a href="haytem.html">Experience</a></li>
+            <li><a href="Book.html">Book</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <a href="https://www.facebook.com/"><img src="image/facebook.png" alt="Facebook"></a>
+    <a href="https://www.instagram.com/?hl=fr-ca"><img src="image/instagram.png" alt="Instagram" class="instagram"></a>
+    <a href="https://twitter.com/?lang=fr"><img src="image/X.jpg" alt="Twitter"></a>
+    <a href="https://www.youtube.com/"><img src="image/youtube.png" alt="Youtube"></a>
+</div>
+
+<header id="rouge_header">
+    <h1>OVO Hotels</h1>
+</header>
+
+<main id="rouge_main">
+    <p>Immerse yourself in the luxury and elegance of OVO Hotel, the perfect escape for those seeking a blend of comfort and adventure. Nestled in the heart of the city, our hotel offers an unforgettable experience with stunning views, exquisite dining options, and unparalleled service.</p>
+    
+    
+
+    <section id="booking">
+      <h2>Book Your Stay</h2>
+      <form method="POST">
+          <label for="hotel_chain">Hotel Chain:</label>
+          <select id="hotel_chain" name="hotel_chain">
+              <option value="">Select Hotel Chain</option>
+              <option value="Accor">Accor</option>
+              <option value="FourSeason">Four Seasons</option>
+              <option value="Ritz-Carlton">Ritz-Carlton</option>
+              <option value="Marriott">Marriott</option>
+              <option value="Hyatt">Hyatt Hotels</option>
+          </select>
+  
+          <label for="province_state">Choose a province/state:</label>
+          <select id="province_state" name="province_state" onchange="updateCities(this.value)">
+              <option value="">Select province/state</option>
+              <option value="Quebec">Quebec</option>
+              <option value="Ontario">Ontario</option>
+              <option value="British Columbia">British Columbia</option>
+              <option value="New York">New York</option>
+              <option value="California">California</option>
+              <option value="Florida">Florida</option>
+              <option value="Massachusetts">Massachusetts</option>
+          </select>
+  
+          <label for="city">Choose a city:</label>
+          <select id="city" name="city">
+              <option value="">Select city</option>
+          </select>
+  
+          <label for="checkin_date">Check-in:</label>
+          <input type="date" id="checkin_date" name="checkin_date">
+          
+          <label for="checkout_date">Check-out:</label>
+          <input type="date" id="checkout_date" name="checkout_date">
+          
+          <button type="submit">Book Now</button>
+      </form>
+  </section>
+  
+  <script>
+    function updateCities(provinceState) {
+        const citiesByProvinceState = {
+            'Quebec': ['Montreal', 'Quebec City'],
+            'Ontario': ['Toronto', 'Ottawa'],
+            'New York': ['New York City', 'Buffalo'],
+            'California': ['Los Angeles', 'San Francisco', 'San Diego'],
+            'British Columbia': ['Vancouver', 'Victoria'],
+            'Florida': ['Miami', 'Orlando'],
+            'Massachusetts': ['Boston'],
+            // Add more mappings as needed
+        };
+    
+        const citiesDropdown = document.getElementById('city');
+        citiesDropdown.innerHTML = '<option value="">Select city</option>'; // Reset city dropdown
+    
+        if (provinceState && citiesByProvinceState.hasOwnProperty(provinceState)) {
+            citiesByProvinceState[provinceState].forEach(function(city) {
+                const option = new Option(city, city);
+                citiesDropdown.add(option);
+            });
+        }
+    }
+    </script>
+    <h2>Amenities</h2>
+    <div class="amenities">
+        <ul>
+            <li>24/7 Front Desk</li>
+            <li>Complimentary Wi-Fi</li>
+            <li>Indoor Swimming Pool</li>
+            <li>Spa and Wellness Center</li>
+            <li>Fitness Center</li>
+            <li>Three On-site Restaurants</li>
+            <li>Conference and Event Facilities</li>
+        </ul>
+    </div>
+    
+</main>
+
+<footer id="rouge_footer">
+    <div><a href="#" class="btn btn-default"><img src="/image/money.jpg" alt="Flèche en haut"></a></div>
+    <div id="rouge" onclick="changer_couleurs()" title="Changer les couleurs du site Web.">
+        <a id="texte1" href="#" onclick="changer_texte(this.id)">Passer au mode sombre</a>
+    </div>
+    <div>
+        <p>Site développé par : OVO Hotels</p>
+    </div>
+</footer>
+
+<script>
+    // Insert your JavaScript for theme switching and dynamic functionalities here.
+    // Example of theme switching:
+    function changer_couleurs() {
+        document.body.classList.toggle('dark-theme'); // Ensure your CSS defines this class.
+    }
+    
+    function changer_texte(id) {
+        var element = document.getElementById(id);
+        if (element.innerText === "Passer au mode sombre") {
+            element.innerText = "Passer au mode clair";
+        } else {
+            element.innerText = "Passer au mode sombre";
+        }
+    }
+</script>
+
+</body>
+</html>

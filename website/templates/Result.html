@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <style>
+        nav a {
+            color: #d64161;
+            font-size: 3em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+
+        .room {
+            padding: 20px;
+            margin: 10px;
+            background-color: #f7f4f4;
+        }
+
+        .review {
+                margin-left: 50px;
+                font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <hr>
+    <div class="content">
+        <h1>{% block title %} Hotels {% endblock %}</h1>
+        <div class='room'>
+            <h3>{{ hotel[0][0] }} - {{ hotel[0][1] }}| Rank :{{ hotel[0][2] }}</h3>
+            <i><p>Number of rooms {{ hotel[0][3] }}</p></i>
+            <p> Email {{ hotel[0][4] }}</p>
+            <i><p>Phone number {{ hotel[0][5] }}</p></i>
+            <p> Availability {{cin}} to {{cout}} </p>
+        </div>
+        {% for room in rooms %}
+            <div class='room'>
+                <h2>Room #{{ room[1] }}</h2>
+                <i><p>Price {{ room[2] }}$ </p></i>
+                <p>Capaacity {{ room[3] }}</p>
+                <form method="post">
+                    <input type="hidden" name="room_id" value="{{ room[0] }}">
+                    <input type="hidden" name="clientID" value="{{ clientID }}">
+                    <input type="hidden" name="cin" value="{{ cin }}">
+                    <input type="hidden" name="cout" value="{{ cout }}">
+                    <button type="submit">Book</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
